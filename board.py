@@ -48,7 +48,7 @@ class Board:
             for a in adjacents:
                 xa = a[0]
                 ya = a[1]
-                if self.cells[xa,ya].is_empty():
+                if self.cells[xa,ya].is_empty() and a not in li_coord:
                     li_coord.append(a)
 
         return li_coord
@@ -169,6 +169,26 @@ class Board:
                 raise ValueError('Sandwich can only be line, col or diag')
             
         return sandwich
+
+    def coord_playable(self, color):
+        if color == 'white':
+            otherc = 'black'
+        elif color == 'black':
+            otherc = 'white' 
+        else:
+            raise ValueError('Color can only be white or black !')
+
+        playable = []
+        adjacents = self.coord_adjacent(otherc)
+        same = self.coord_color(color)
+
+        for coord1 in adjacents:
+            for coord2 in same:
+                if self.is_sandwich(color, coord1, coord2):
+                    playable.append(coord1)
+        
+        return playable
+
 
     def place(self, pawn):
         pass
