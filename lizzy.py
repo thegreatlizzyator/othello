@@ -21,5 +21,5 @@ print(board)
 
 board.cells[1,5].status = "playable"
 
-print(board)
+#print(board)
 
