@@ -1,8 +1,8 @@
 class Pawn :
 
     def __init__(self, color, posx, posy):
-        self.pawn_color = color#TODO: idiotproof - color can be 'black' or 'white'
-        self.pawn_posx = posx #TODO: idiotproof - position cannot be outside the board 
+        self.pawn_color = color
+        self.pawn_posx = posx 
         self.pawn_posy = posy
 
     @property
