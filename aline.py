@@ -15,10 +15,18 @@ print(cells[0,1])
 master = DungeonMaster()
 board = master.board
 print(board.cells[3,3].x,board.cells[3,3].y, board.cells[3,3].status)
+
+
+print (master.board.translate2A1('a',4))
+print (master.board.translate2XY(1,9))
+
 print(board.coord_color('black'))
 print(board.coord_color('black')[0])
 print(board.coord_color('black')[0][1])
 
+
 print(board.cells[3,3].is_empty(), board.cells[0,0].is_empty())
+
+print(board.coord_adjacent('white'))
 
 print(board.coord_adjacent('white'))
