@@ -84,12 +84,12 @@ class Board:
     
     def __str__(self):
         pass 
-        sep = "   " + "+----" *8 + "+\n" 
-        header = "      A    B    C    D    E    F    G    H  \n" + "   " + "+----" *8 + "+\n" 
+        sep = " "*18 + "+----" *8 + "+\n" 
+        header = " "*15 + "      A    B    C    D    E    F    G    H  \n" + " "*18 + "+----" *8 + "+\n" 
         rows =""
 
         for i in range(0,8):
-            row = str(i+1)+ "  "
+            row = " "*15 + str(i+1)+ "  "
             for j in range(0,8):
                 #print(board.cells[i,j].status)
                 if self.cells[i,j].status == "empty":        

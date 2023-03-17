@@ -3,6 +3,9 @@ from master import DungeonMaster
 master = DungeonMaster()
 master.introduction()
 
-master.ask()
-master.play()
-master.ask()
+#coord = master.ask()
+#master.play(coord)
+
+#master.ask()
+master.player1.status = "winner"
+master.gameover()
