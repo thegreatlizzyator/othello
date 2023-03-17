@@ -34,7 +34,7 @@ class Board:
                     if self.cells[x,y].status == color:
                         li_coord.append((x,y))
         else:
-            raise NameError('Color can only be white or black !')
+            raise ValueError('Color can only be white or black !')
         return li_coord
     
     def coord_adjacent(self, color):
@@ -55,10 +55,57 @@ class Board:
 
         return li_coord
 
-    def is_sandwich(self):
-        #TODO: @Aline propose de faire une fonction qui detecte les sandwich
-        pass
+    def is_aligned4sandwich(self, coord1, coord2):
+        #TODO: @Aline propose de faire une fonction qui detecte les sandwich     
+        x1 = coord1[0]
+        y1 = coord1[1]
+        x2 = coord2[0]
+        y2 = coord2[1]
+        diffx = np.abs(x2 - x1)
+        diffy = np.abs(y2 - y1)
+        if(x2 == x1 and diffy > 1):
+            # sandwich line
+            align = True
+        elif(y2 == y1 and diffx > 1):
+            # sandwich column
+            align = True
+        elif(diffx == diffy and diffx > 1):
+            # sandwich diagonal
+            align = True
+        else:
+            align = False
+        return align
 
+    def all_same(self, color, coord1, coord2):
+        x1 = coord1[0]
+        y1 = coord1[1]
+        x2 = coord2[0]
+        y2 = coord2[1]
+        diffx = np.abs(x2 - x1)
+        diffy = np.abs(y2 - y1)
+        if(x2 == x1 and diffy > 1):
+            # sandwich line
+            same = False
+        elif(y2 == y1 and diffx > 1):
+            # sandwich column
+            same = False
+        elif(diffx == diffy and diffx > 1):
+            # sandwich diagonal
+            same = False
+        else:
+            same = False
+        
+        return same
+
+        
+    def is_sandwich(self, color, coord1, coord2):
+        #TODO: @Aline propose de faire une fonction qui detecte les sandwich
+        if color == 'white':
+            other = black
+        elif color == 'black':
+            other = white 
+        else:
+            raise ValueError('Color can only be white or black !')
 
     def place(self, pawn):
         pass
