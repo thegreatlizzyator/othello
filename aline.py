@@ -23,13 +23,14 @@ print(board.cells[3,3].is_empty(), board.cells[0,0].is_empty())
 
 coordB = board.coord_color('black')
 print(coordB)
-print(coordB[0])
-print(coordB[0][1])
-
-
 
 coordAdj = board.coord_adjacent('white')
 print(coordAdj)
 
-print(board.is_aligned4sandwich(coordB[0], coordAdj[1]))
+print(board.type_sandwich(coordB[1], coordAdj[1]))
+print(board.is_aligned4sandwich(coordB[1], coordAdj[1]))
+
+c = (2,5)
+print(board.type_sandwich(coordB[1], c))
+print(board.is_aligned4sandwich(coordB[1], c))
 

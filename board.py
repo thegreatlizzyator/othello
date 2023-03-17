@@ -55,8 +55,7 @@ class Board:
 
         return li_coord
 
-    def is_aligned4sandwich(self, coord1, coord2):
-        #TODO: @Aline propose de faire une fonction qui detecte les sandwich     
+    def type_sandwich(self, coord1, coord2):
         x1 = coord1[0]
         y1 = coord1[1]
         x2 = coord2[0]
@@ -65,18 +64,28 @@ class Board:
         diffy = np.abs(y2 - y1)
         if(x2 == x1 and diffy > 1):
             # sandwich line
-            align = True
+            typesand = 'line'
         elif(y2 == y1 and diffx > 1):
             # sandwich column
-            align = True
+            typesand = 'col'
         elif(diffx == diffy and diffx > 1):
             # sandwich diagonal
+            typesand = 'diag'
+        else:
+            typesand = None
+        return typesand 
+
+    def is_aligned4sandwich(self, coord1, coord2):    
+        typesand = self.type_sandwich(coord1, coord2)
+        if(typesand == None):
+            align = False
+        elif(typesand == 'line' or typesand == 'col' or typesand == 'diag'):
             align = True
         else:
-            align = False
+            raise ValueError('Le type de sandwich est line, col ou diag')
         return align
 
-    def all_same(self, color, coord1, coord2):
+    def all_same_in_bw(self, color, coord1, coord2):
         x1 = coord1[0]
         y1 = coord1[1]
         x2 = coord2[0]
@@ -85,7 +94,8 @@ class Board:
         diffy = np.abs(y2 - y1)
         if(x2 == x1 and diffy > 1):
             # sandwich line
-            same = False
+            same=True
+            
         elif(y2 == y1 and diffx > 1):
             # sandwich column
             same = False
@@ -101,11 +111,20 @@ class Board:
     def is_sandwich(self, color, coord1, coord2):
         #TODO: @Aline propose de faire une fonction qui detecte les sandwich
         if color == 'white':
-            other = black
+            otherc = black
         elif color == 'black':
-            other = white 
+            otherc = white 
         else:
             raise ValueError('Color can only be white or black !')
+
+        x1 = coord1[0]
+        y1 = coord1[1]
+        x2 = coord2[0]
+        y2 = coord2[1]
+        diffx = np.abs(x2 - x1)
+        diffy = np.abs(y2 - y1)
+            
+        return 1
 
     def place(self, pawn):
         pass
