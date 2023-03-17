@@ -1,5 +1,16 @@
 class Player:
 
     def __init__(self, color):
-        self.color = color  #TODO : protect, color of Player cannot change, merci Aline :-) 
-                            #TODO : idiotproof color can only be black or white
+        if color != "black" and color != "white":
+            raise ValueError("Players can only be black or white")
+        
+        else:
+            self.__color = color 
+
+    def __set_color(self, color):
+        raise AttributeError("Players cannot change sides")
+
+    def __get_color(self):
+        return self.__color
+    
+    color = property(__get_color, __set_color)
