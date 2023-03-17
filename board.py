@@ -16,6 +16,14 @@ class Board:
 
     def place(self, pawn):
         self.allpawns.append(pawn)
+
+    
+    def translate2A1(self):
+        pass #TODO translate A1 --> x,y 
+
+    def translate2XY(self):
+        pass #TODO translate x,y --> A1 ...  
+
     
     def __str__(self):
         pass #TODO: print the ascii board with the is_sandwinch/check as ? 

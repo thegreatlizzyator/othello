@@ -1,4 +1,3 @@
-
 class DungeonMaster :
     #TODO: make this class a singleton 
 
@@ -17,12 +16,6 @@ class DungeonMaster :
         new_pawn = Pawn(color= self.who.color, posx, posy)
         self.board.place(pawn)
     
-    def translate2A1(self):
-        pass #TODO translate A1 --> x,y 
-
-    def translate2XY(self):
-        pass #TODO translate x,y --> A1 ...  
-
 
     def gameover(self):
         # if condition de victoire -->  self.board 
