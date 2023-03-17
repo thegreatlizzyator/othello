@@ -9,6 +9,7 @@ class Board:
         else:
             pass
         # return list of coordinates where one can place a pawn  
+        
     def is_sandwich(self):
         #TODO: @Aline propose de faire une fonction qui detecte les sandwich
         pass
