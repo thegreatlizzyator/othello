@@ -13,3 +13,21 @@ class Cell:
             return True
         else:
             return False
+
+    def is_white(self):
+        if(self.status == 'white'):
+            return True
+        else:
+            return False
+
+    def is_black(self):
+        if(self.status == 'black'):
+            return True
+        else:
+            return False
+
+    def is_playable(self):
+        if(self.status == 'playable'):
+            return True
+        else:
+            return False

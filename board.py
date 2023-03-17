@@ -4,8 +4,6 @@ from cell import Cell
 
 class Board:
 
-
-
     def __init__(self):
         # self.allpawns = listofpawns # TODO: idiotproof check that list contains objects of class pawn
         self.liste_pos_y = ['a','b','c','d','e','f','g','h']
@@ -84,36 +82,12 @@ class Board:
         else:
             raise ValueError('Le type de sandwich est line, col ou diag')
         return align
-
-    def all_same_in_bw(self, color, coord1, coord2):
-        x1 = coord1[0]
-        y1 = coord1[1]
-        x2 = coord2[0]
-        y2 = coord2[1]
-        diffx = np.abs(x2 - x1)
-        diffy = np.abs(y2 - y1)
-        if(x2 == x1 and diffy > 1):
-            # sandwich line
-            same=True
-            
-        elif(y2 == y1 and diffx > 1):
-            # sandwich column
-            same = False
-        elif(diffx == diffy and diffx > 1):
-            # sandwich diagonal
-            same = False
-        else:
-            same = False
-        
-        return same
-
         
     def is_sandwich(self, color, coord1, coord2):
-        #TODO: @Aline propose de faire une fonction qui detecte les sandwich
         if color == 'white':
-            otherc = black
+            otherc = 'black'
         elif color == 'black':
-            otherc = white 
+            otherc = 'white' 
         else:
             raise ValueError('Color can only be white or black !')
 
@@ -123,8 +97,78 @@ class Board:
         y2 = coord2[1]
         diffx = np.abs(x2 - x1)
         diffy = np.abs(y2 - y1)
+        typesand = self.type_sandwich(coord1, coord2)
+
+        if not self.is_aligned4sandwich(coord1, coord2):
+            sandwich = False
+        else:
+            if(typesand == 'line'):
+                if(y1 < y2):
+                    ori = y1 
+                elif(y1 > y2):
+                    ori = y2
+                else:
+                    raise ValueError('Cannot compare the same pawn !')
+
+                sum = 0
+                for j in range(1,diffy):
+                    y = ori + j
+                    if(otherc == 'white'):
+                        sum += self.cells[x1,y].is_white()
+                    elif(otherc == 'black'):
+                        sum += self.cells[x1,y].is_black()
+                
+                sandwich = (sum == diffy-1)
             
-        return 1
+            elif(typesand == 'col'):
+                if(x1 < x2):
+                    ori = x1 
+                elif(x1 > x2):
+                    ori = x2
+                else:
+                    raise ValueError('Cannot compare the same pawn !')
+
+                sum = 0
+                for i in range(1,diffx):
+                    x = ori + i
+                    if(otherc == 'white'):
+                        sum += self.cells[x,y1].is_white()
+                    elif(otherc == 'black'):
+                        sum += self.cells[x,y1].is_black()
+                
+                sandwich = (sum == diffx-1)
+                
+            elif(typesand == 'diag'):
+                if(x1 < x2 and y1 < y2):
+                    orix = x1 
+                    oriy = y1
+                elif(x1 < x2 and y1 > y2):
+                    orix = x1 
+                    oriy = y2
+                elif(x1 > x2 and y1 < y2):
+                    orix = x2 
+                    oriy = y1
+                elif(x1 > x2 and y1 > y2):
+                    orix = x2 
+                    oriy = y2
+                else:
+                    raise ValueError('Cannot compare the same pawn !')
+
+                sum = 0
+                for i in range(1,diffx):
+                    x = orix + i
+                    y = oriy + i
+                    if(otherc == 'white'):
+                        sum += self.cells[x,y].is_white()
+                    elif(otherc == 'black'):
+                        sum += self.cells[x,y].is_black()
+                
+                sandwich = (sum == diffx-1)
+                
+            else:
+                raise ValueError('Sandwich can only be line, col or diag')
+            
+        return sandwich
 
     def place(self, pawn):
         pass

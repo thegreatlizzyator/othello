@@ -29,8 +29,10 @@ print(coordAdj)
 
 print(board.type_sandwich(coordB[1], coordAdj[1]))
 print(board.is_aligned4sandwich(coordB[1], coordAdj[1]))
+print(board.is_sandwich('white', coordB[1], coordAdj[1]))
 
 c = (2,5)
 print(board.type_sandwich(coordB[1], c))
 print(board.is_aligned4sandwich(coordB[1], c))
+print(board.is_sandwich('black', coordB[1], c))
 
