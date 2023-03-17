@@ -1,7 +1,14 @@
+import numpy as np
+from cell import Cell
+
 class Board:
 
-    def __init__(self, listofpawns):
-        self.allpawns = listofpawns # TODO: idiotproof check that list contains objects of class pawn 
+    def __init__(self):
+        # self.allpawns = listofpawns # TODO: idiotproof check that list contains objects of class pawn 
+        cells = np.zeros((8,8))
+        for x in range(0,8):
+            for y in range(0,8):
+                self.cells[x][y] = Cell(x,y,'empty')
     
     def check(self, Playercolor):
         if Playercolor == "white":
@@ -9,7 +16,7 @@ class Board:
         else:
             pass
         # return list of coordinates where one can place a pawn  
-        
+
     def is_sandwich(self):
         #TODO: @Aline propose de faire une fonction qui detecte les sandwich
         pass
