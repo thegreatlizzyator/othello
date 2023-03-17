@@ -17,13 +17,28 @@ class Board:
             pass
         # return list of coordinates where one can place a pawn  
 
+    def coord_color(self, color):
+        li_coord = []
+        if(color == 'white' or color == 'black'):
+            for x in range(0,8):
+                for y in range(0,8):
+                    if self.cells[x][y].status == color:
+                        li_coord.append((x,y))
+        else:
+            raise NameError('Color can only be white or black !')
+        return li_coord
+    
+    def 
+
+
     def is_sandwich(self):
         #TODO: @Aline propose de faire une fonction qui detecte les sandwich
         pass
 
 
     def place(self, pawn):
-        self.allpawns.append(pawn)
+        pass
+        # self.allpawns.append(pawn)
 
     
     def translate2A1(self):
