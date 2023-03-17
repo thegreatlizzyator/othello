@@ -61,7 +61,7 @@ class Board:
         rows =""
 
         for i in range(0,8):
-            row = str(i)+ "  "
+            row = str(i+1)+ "  "
             for j in range(0,8):
                 #print(board.cells[i,j].status)
                 if self.cells[i,j].status == "empty":        
