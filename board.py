@@ -1,3 +1,4 @@
+
 from tkinter import Y
 import numpy as np
 from cell import Cell
@@ -41,23 +42,12 @@ class Board:
         '''
         Returns a list of the coordinates of the cells adjacent to the ones of a certain color (black or white)
         '''
-        li_coord = []
-        li_color = self.coord_color(color)
-        for c in li_color:
-            x = c[0]
-            y = c[1]
-            adjacents = [(x,y-1), (x-1,y), (x,y+1), (x+1,y)]
-            for a in adjacents:
-                xa = a[0]
-                ya = a[1]
-                if self.cells[xa,ya].is_empty():
-                    li_coord.append(a)
 
-        return li_coord
 
-    def is_sandwich(self):
+
+        def is_sandwich(self):
         #TODO: @Aline propose de faire une fonction qui detecte les sandwich
-        pass
+         pass
 
 
     def place(self, pawn):
@@ -65,23 +55,23 @@ class Board:
         # self.allpawns.append(pawn)
 
     
+     
+        def translate2XY(self,AA): #translate A1 --> x,y
+            XY = list(AA)
+            y = XY[0] ; x = XY[1]
+            if y in self.liste_pos_y:
+                new_y = self.liste_pos_y.index(y)
+            elif y in self.liste_pos_Y:
+                new_y = self.liste_pos_Y.index(y)
+            else:
+                raise ValueError("La position indiquée n'existe pas sur le plateau")
+            if x in self.liste_pos_x:
+                new_x = self.liste_pos_x.index(x)
+            else:
+                raise ValueError("La position indiquée n'existe pas sur le plateau")
+            return (new_y,new_x)
 
-    def translate2XY(self,AA): #translate A1 --> x,y  
-        XY = list(AA)
-        y = XY[0] ; x = XY[1]
-        if y in self.liste_pos_y:
-            new_y = self.liste_pos_y.index(y)
-        elif y in self.liste_pos_Y:
-            new_y = self.liste_pos_Y.index(y)
-        else:
-            raise ValueError("La position indiquée n'existe pas sur le plateau")
-        if x in self.liste_pos_x:
-            new_x = self.liste_pos_x.index(x)
-        else:
-            raise ValueError("La position indiquée n'existe pas sur le plateau")
-        return (new_y,new_x)
-
-    def translate2A1(self,y,x): # translate x,y --> A1 
+    def translate2A1(self,y,x): # translate x,y --> A1  
         if y in range (0,len(self.liste_pos_Y)) :
             new_y = self.liste_pos_Y[y]
         else:
