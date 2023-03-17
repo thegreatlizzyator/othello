@@ -35,8 +35,7 @@ class Pawn :
             raise ValueError (" Attention ! Le pion est en dehors du plateau ! ")
         self.__pawn_posy = posy
     
-    def setcolor(self, new):
-        #print("changing cell from", self.color, "to", new) #TODO: idiotproof - new must be 'black' or 'white' 
+    def setcolor(self, new): 
         self.pawn_color = new
 
     def __repr__(self):
