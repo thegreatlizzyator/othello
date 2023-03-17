@@ -8,7 +8,7 @@ class Board:
         self.cells = np.empty((8,8), dtype=object)
         for x in range(0,8):
             for y in range(0,8):
-                self.cells[x][y] = Cell(x,y,'empty')
+                self.cells[x,y] = Cell(x,y,'empty')
     
     def check(self, Playercolor):
         if Playercolor == "white":
@@ -25,7 +25,7 @@ class Board:
         if(color == 'white' or color == 'black'):
             for x in range(0,8):
                 for y in range(0,8):
-                    if self.cells[x][y].status == color:
+                    if self.cells[x,y].status == color:
                         li_coord.append((x,y))
         else:
             raise NameError('Color can only be white or black !')
@@ -35,7 +35,19 @@ class Board:
         '''
         Returns a list of the coordinates of the cells adjacent to the ones of a certain color (black or white)
         '''
+        li_coord = []
+        li_color = self.coord_color(color)
+        for c in li_color:
+            x = c[0]
+            y = c[1]
+            adjacents = [(x,y-1), (x-1,y), (x,y+1), (x+1,y)]
+            for a in adjacents:
+                xa = a[0]
+                ya = a[1]
+                if self.cells[xa,ya].is_empty():
+                    li_coord.append(a)
 
+        return li_coord
 
     def is_sandwich(self):
         #TODO: @Aline propose de faire une fonction qui detecte les sandwich

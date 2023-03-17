@@ -16,4 +16,9 @@ master = DungeonMaster()
 board = master.board
 print(board.cells[3,3].x,board.cells[3,3].y, board.cells[3,3].status)
 print(board.coord_color('black'))
+print(board.coord_color('black')[0])
+print(board.coord_color('black')[0][1])
 
+print(board.cells[3,3].is_empty(), board.cells[0,0].is_empty())
+
+print(board.coord_adjacent('white'))
