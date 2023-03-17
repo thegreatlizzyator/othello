@@ -23,13 +23,34 @@ class Board:
             pass
         # return list of coordinates where one can place a pawn  
 
+    def coord_color(self, color):
+        '''
+        Returns a list of the coordinates of the cells of a certain color (black or white)
+        '''
+        li_coord = []
+        if(color == 'white' or color == 'black'):
+            for x in range(0,8):
+                for y in range(0,8):
+                    if self.cells[x][y].status == color:
+                        li_coord.append((x,y))
+        else:
+            raise NameError('Color can only be white or black !')
+        return li_coord
+    
+    def coord_adjacent(self, color):
+        '''
+        Returns a list of the coordinates of the cells adjacent to the ones of a certain color (black or white)
+        '''
+
+
     def is_sandwich(self):
         #TODO: @Aline propose de faire une fonction qui detecte les sandwich
         pass
 
 
     def place(self, pawn):
-        self.allpawns.append(pawn)
+        pass
+        # self.allpawns.append(pawn)
 
     
     def translate2A1(self,y,x): # translate A1 --> x,y 
@@ -57,4 +78,26 @@ class Board:
         return (new_y,new_x)
     
     def __str__(self):
-        pass #TODO: print the ascii board with the is_sandwinch/check as ? 
+        pass 
+        sep = "   " + "+----" *8 + "+\n" 
+        header = "      A    B    C    D    E    F    G    H  \n" + "   " + "+----" *8 + "+\n" 
+        rows =""
+
+        for i in range(0,8):
+            row = str(i+1)+ "  "
+            for j in range(0,8):
+                #print(board.cells[i,j].status)
+                if self.cells[i,j].status == "empty":        
+                    row += "|    "
+                elif self.cells[i,j].status == "black":
+                    row += "| B  "
+                elif self.cells[i,j].status == "white":
+                    row += "| W  "
+                else:
+                    row += "| ?  "
+
+            rows += row + "| \n" + sep
+
+        ascii_board = header + rows
+
+        return ascii_board
