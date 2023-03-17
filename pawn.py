@@ -12,7 +12,7 @@ class Pawn :
     @pawn_color.setter #permet d'éviter qu'un pion puisse être d'une autre couleur que noir ou blanc
     def pawn_color(self,color):
         if color != 'white' and color != 'black' : 
-            raise ValueError (" Attention ! Un pion ne peut être que blanc ou noir ! ")
+            raise ValueError (" Warning ! A pawn can only be black or white ! ")
         self.__pawn_color = color
 
     @property
@@ -22,7 +22,7 @@ class Pawn :
     @pawn_posx.setter #permet d'éviter qu'un pion puisse placé en dehors du plateau
     def pawn_posx(self,posx):
         if posx < 0 or posx > 7 :
-            raise ValueError (" Attention ! Le pion est en dehors du plateau ! ")
+            raise ValueError (" Warning ! The pawn is outside the board ! ")
         self.__pawn_posx = posx
 
     @property
@@ -32,7 +32,7 @@ class Pawn :
     @pawn_posy.setter
     def pawn_posy(self,posy):
         if posy < 0 or posy > 7 :
-            raise ValueError (" Attention ! Le pion est en dehors du plateau ! ")
+            raise ValueError (" Warning ! The pawn is outside the board ! ")
         self.__pawn_posy = posy
     
     def setcolor(self, new): 
