@@ -34,4 +34,26 @@ class Board:
 
     
     def __str__(self):
-        pass #TODO: print the ascii board with the is_sandwinch/check as ? 
+        pass 
+        sep = "   " + "+----" *8 + "+\n" 
+        header = "      A    B    C    D    E    F    G    H  \n" + "   " + "+----" *8 + "+\n" 
+        rows =""
+
+        for i in range(0,8):
+            row = str(i)+ "  "
+            for j in range(0,8):
+                #print(board.cells[i,j].status)
+                if self.cells[i,j].status == "empty":        
+                    row += "|    "
+                elif self.cells[i,j].status == "black":
+                    row += "| B  "
+                elif self.cells[i,j].status == "white":
+                    row += "| W  "
+                else:
+                    row += "| ?  "
+
+            rows += row + "| \n" + sep
+
+        ascii_board = header + rows
+
+        return ascii_board
