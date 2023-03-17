@@ -1,8 +1,8 @@
 class Pawn :
 
     def __init__(self, color, posx, posy):
-        self.pawn_color = color#TODO: idiotproof - color can be 'black' or 'white'
-        self.pawn_posx = posx #TODO: idiotproof - position cannot be outside the board 
+        self.pawn_color = color
+        self.pawn_posx = posx 
         self.pawn_posy = posy
 
     @property
@@ -35,8 +35,7 @@ class Pawn :
             raise ValueError (" Attention ! Le pion est en dehors du plateau ! ")
         self.__pawn_posy = posy
     
-    def setcolor(self, new):
-        #print("changing cell from", self.color, "to", new) #TODO: idiotproof - new must be 'black' or 'white' 
+    def setcolor(self, new): 
         self.pawn_color = new
 
     def __repr__(self):
