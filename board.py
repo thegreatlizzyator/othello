@@ -32,7 +32,7 @@ class Board:
         self.allpawns.append(pawn)
 
     
-    def translate2A1(self,y,x):
+    def translate2A1(self,y,x): # translate A1 --> x,y 
         if y in self.liste_pos_y:
             new_y = self.liste_pos_y.index(y)
         elif y in self.liste_pos_Y:
@@ -44,11 +44,17 @@ class Board:
         else:
             raise ValueError("La position indiquée n'existe pas sur le plateau")
         return (new_y,new_x)
-        pass #TODO translate A1 --> x,y 
 
-    def translate2XY(self):
-        pass #TODO translate x,y --> A1 ...  
-
+    def translate2XY(self,y,x): #translate x,y --> A1 ...  
+        if y in range (0,len(self.liste_pos_Y)) :
+            new_y = self.liste_pos_Y[y]
+        else:
+            raise ValueError("La position indiquée n'existe pas sur le plateau")
+        if x in range (0,len(self.liste_pos_x)):
+            new_x = self.liste_pos_x[x]
+        else:
+            raise ValueError("La position indiquée n'existe pas sur le plateau")
+        return (new_y,new_x)
     
     def __str__(self):
         pass #TODO: print the ascii board with the is_sandwinch/check as ? 

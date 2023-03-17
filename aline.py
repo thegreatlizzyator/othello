@@ -17,3 +17,4 @@ board = master.board
 print(board.cells[3,3].x,board.cells[3,3].y, board.cells[3,3].status)
 
 print (master.board.translate2A1('a',4))
+print (master.board.translate2XY(1,9))
