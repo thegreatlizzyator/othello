@@ -5,7 +5,7 @@ class Board:
 
     def __init__(self):
         # self.allpawns = listofpawns # TODO: idiotproof check that list contains objects of class pawn 
-        cells = np.zeros((8,8))
+        self.cells = np.empty((8,8), dtype=object)
         for x in range(0,8):
             for y in range(0,8):
                 self.cells[x][y] = Cell(x,y,'empty')
