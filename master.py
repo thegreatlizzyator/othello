@@ -49,7 +49,7 @@ class DungeonMaster :
             newpawn = Pawn(self.player2.color, coord[0], coord[1])
         print(newpawn)
         self.board.place(newpawn)
-        
+
 
         print(self.board)
 
@@ -60,6 +60,18 @@ class DungeonMaster :
         self.player1.chg_status()
         self.player2.chg_status()
 
+    
+    def isover(self):
+        allstatus = [self.board.cells[i,j].status for i in range(0,8) for j in range(0,8)]
+        nbpl = allstatus.count("playable")
+        if nbpl > 0:
+            ret = False
+        else:
+            ret = True
+
+        return ret
+    
+    
     def gameover(self):
         # if condition de victoire -->  self.board 
         #   self.gameover = True
