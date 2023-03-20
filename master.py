@@ -54,15 +54,17 @@ class DungeonMaster :
         print(newpawn)
         self.board.place(newpawn)
         
-
         print(self.board)
 
-        # if sandwich:
-        #    print(change color of pawn)
-        # 
         #change player --> set status of player to active / inactive
         self.player1.chg_status()
         self.player2.chg_status()
+
+        #update playable coordinates
+        if self.player1.status == "active":
+            self.board.coord_playable(self.player1.color)
+        elif self.player2.status == "active":
+            self.board.coord_playable(self.player2.color)
 
     def gameover(self):
         # if condition de victoire -->  self.board 
