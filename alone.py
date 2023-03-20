@@ -61,6 +61,8 @@ class LonelyMaster :
         options = self.li_playable
         if len(options) == 1:
             move = options[0]
+        elif len(options) == 0:
+            pass
         else:
             move = random.choice(options)
         moveA1 = self.board.translate2A1(move[0], move[1])
