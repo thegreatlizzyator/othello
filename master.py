@@ -53,7 +53,7 @@ class DungeonMaster :
         print(newpawn)
         self.board.place(newpawn)
         
-        print(self.board)
+        #print(self.board)
 
         #change player --> set status of player to active / inactive
         self.player1.chg_status()
