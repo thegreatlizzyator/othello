@@ -17,17 +17,27 @@ board = master.board
 print(board.cells[3,3].x,board.cells[3,3].y, board.cells[3,3].status)
 
 ####
-print("NEW")
-board.cells[4,4].status = 'black'
+print("DEBUG")
+board.cells[1,2].status = 'black'
+board.cells[1,4].status = 'black'
+
+board.cells[2,2].status = 'white'
+board.cells[2,3].status = 'black'
+board.cells[2,4].status = 'white'
+board.cells[2,5].status = 'white'
+
+board.cells[3,2].status = 'white'
+board.cells[3,3].status = 'white'
+board.cells[3,4].status = 'black'
+
+board.cells[4,2].status = 'white'
+board.cells[4,3].status = 'white'
+board.cells[4,4].status = 'white'
 board.cells[4,5].status = 'black'
-print(board.cells[3,5].status)
 
-cW = board.coord_color('white')
-print("les blancs : ", cW)
+board.cells[5,2].status = 'white'
+board.cells[5,3].status = 'white'
+board.cells[5,4].status = 'black'
+board.cells[5,5].status = 'white'
 
-cAdj = board.coord_adjacent('black')
-print("les adjacents : ", cAdj)
-
-cP = board.coord_playable('white')
-print("les playables : ", cP)
-print(board.cells[3,5].status)
+print(board)
