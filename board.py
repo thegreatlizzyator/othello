@@ -192,8 +192,10 @@ class Board:
 
 
     def place(self, pawn):
-        pass
-        # self.allpawns.append(pawn)
+        x = pawn.pawn_posx
+        y = pawn.pawn_posy
+        color = pawn.pawn_color
+        self.cells[y,x].status = color
 
     
      

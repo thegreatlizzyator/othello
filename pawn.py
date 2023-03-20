@@ -1,7 +1,7 @@
 class Pawn :
 
     def __init__(self, color, posx, posy):
-        self.pawn_color = color
+        self.pawn_color = color #TODO pawn_color --> color
         self.pawn_posx = posx 
         self.pawn_posy = posy
 
@@ -37,6 +37,12 @@ class Pawn :
     
     def setcolor(self, new): 
         self.pawn_color = new
+    
+    def switch(self):
+        if self.pawn_color == "white":
+            self.setcolor("black")
+        elif self.pawn_color == "black":
+            self.setcolor("white")
 
     def __repr__(self):
         return f"{self.pawn_color}, posx = {self.pawn_posx}, posy = {self.pawn_posy}"
