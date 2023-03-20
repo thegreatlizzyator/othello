@@ -61,12 +61,15 @@ class LonelyMaster :
         options = self.li_playable
         if len(options) == 1:
             move = options[0]
+            moveA1 = self.board.translate2A1(move[0], move[1])
+            print("\nGollum plays: " + moveA1[0] + moveA1[1])
+
         elif len(options) == 0:
             pass
         else:
             move = random.choice(options)
-        moveA1 = self.board.translate2A1(move[0], move[1])
-        print("\nGollum plays: " + moveA1[0] + moveA1[1])
+            moveA1 = self.board.translate2A1(move[0], move[1])
+            print("\nGollum plays: " + moveA1[0] + moveA1[1])
 
 
         newpawn = Pawn(self.player2.color, move[0], move[1])
