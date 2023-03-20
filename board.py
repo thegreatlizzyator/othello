@@ -312,13 +312,12 @@ class Board:
         for i in range(0,8):
             row = " "*15 + str(i+1)+ "  "
             for j in range(0,8):
-                #print(board.cells[i,j].status)
                 if self.cells[i,j].status == "empty":        
                     row += "|    "
                 elif self.cells[i,j].status == "black":
-                    row += "| B  "
+                    row += "| X  "
                 elif self.cells[i,j].status == "white":
-                    row += "| W  "
+                    row += "| O  "
                 else:
                     row += "| ?  "
 
