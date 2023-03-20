@@ -19,7 +19,8 @@ board.cells[1,1].status = "playable"
 
 print(board)
 
-board.cells[1,5].status = "playable"
+print(master.isover())
 
-#print(board)
+
+
 

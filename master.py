@@ -66,6 +66,18 @@ class DungeonMaster :
         elif self.player2.status == "active":
             self.board.coord_playable(self.player2.color)
 
+    
+    def isover(self):
+        allstatus = [self.board.cells[i,j].status for i in range(0,8) for j in range(0,8)]
+        nbpl = allstatus.count("playable")
+        if nbpl > 0:
+            ret = False
+        else:
+            ret = True
+
+        return ret
+    
+    
     def gameover(self):
         # if condition de victoire -->  self.board 
         #   self.gameover = True
