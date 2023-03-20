@@ -44,16 +44,22 @@ class DungeonMaster :
                 prompt = "your move, " + self.player2.name + ": "
             answer = input(prompt)
             if self.board.is_coord_ok(answer) == False :
+                print ("Caution ! These coordinates does not exists in this board !")
                 stupid_count += 1
                 continue
             else :
                 XY = self.board.translate2XY(answer)
+            if XY in self.li_playable :
                 stupid_count = 11
+                return XY
+            else :
+                print ("Caution ! These coordinates are not playable !")
+                continue
 
 
         print(XY)
         #TODO: do not allow non playable moves -- add while loop if player is stupide RTFM and rage quit 
-        return XY
+        
         
     def play(self, coord):
         print("PLAY")
@@ -73,9 +79,9 @@ class DungeonMaster :
 
         #update playable coordinates
         if self.player1.status == "active":
-            self.board.coord_playable(self.player1.color)
+            self.li_playable = self.board.coord_playable(self.player1.color)
         elif self.player2.status == "active":
-            self.board.coord_playable(self.player2.color)
+            self.li_playable = self.board.coord_playable(self.player2.color)
 
     
     def isover(self):
