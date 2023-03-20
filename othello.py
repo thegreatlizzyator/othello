@@ -1,4 +1,3 @@
-from matplotlib.transforms import BboxBase
 from master import DungeonMaster
 
 master = DungeonMaster()
@@ -14,5 +13,5 @@ while next:
     next = not master.isover()
     print(next)
 
-#master.gameover()
+master.gameover()
 
