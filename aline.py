@@ -40,8 +40,9 @@ board.cells[5,3].status = 'white'
 board.cells[5,4].status = 'black'
 board.cells[5,5].status = 'white'
 
-print(board)
+# print(board)
 
-board.coord_playable('white')
+# board.coord_playable('white')
 
-print(board)
+# print(board)
+print(np.min([1,2]))

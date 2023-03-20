@@ -188,7 +188,6 @@ class Board:
         for coord1 in adjacents:
             for coord2 in same:
                 if self.is_sandwich(color, coord1, coord2):
-                    print(coord1, coord2, self.type_sandwich(coord1, coord2))
                     playable.append(coord1)
                     x = coord1[0]
                     y = coord1[1]
