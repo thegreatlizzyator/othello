@@ -4,8 +4,9 @@ from master import DungeonMaster
 master = DungeonMaster()
 master.introduction()
 print(master.isover())
-
 next = True
+
+#master.ask()
 
 while next:
     coord = master.ask()

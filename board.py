@@ -49,7 +49,8 @@ class Board:
             for a in adjacents:
                 xa = a[0]
                 ya = a[1]
-                if self.cells[xa,ya].is_empty() and a not in li_coord:
+
+                if((self.cells[xa,ya].is_empty()) and (a not in li_coord) and (0 <= xa <= 7) and (0 <= ya <= 7)):
                     li_coord.append(a)
 
         return li_coord
@@ -209,11 +210,64 @@ class Board:
                 if self.cells[xc,yc].is_playable():
                     self.cells[xc,yc].status = 'empty'
 
-        #TODO: change color sandwich
-    
-        
+        #change color sandwich
+        same = self.coord_color(color)
+        coord_pawn = (x,y)
+        for coord in same:
+            if self.is_sandwich(color, coord, coord_pawn):
+                x1 = coord[0]
+                y1 = coord[1]
+                x2 = coord_pawn[0]
+                y2 = coord_pawn[1]
+                diffx = np.abs(x2 - x1)
+                diffy = np.abs(y2 - y1)
+                typesand = self.type_sandwich(coord, coord_pawn)
 
-    
+                if(typesand == 'line'):
+                    if(y1 < y2):
+                        ori = y1 
+                    elif(y1 > y2):
+                        ori = y2
+                    else:
+                        raise ValueError('Cannot compare the same pawn !')
+
+                    for j in range(1,diffy):
+                        y = ori + j
+                        self.cells[x1,y].status = color
+            
+                elif(typesand == 'col'):
+                    if(x1 < x2):
+                        ori = x1 
+                    elif(x1 > x2):
+                        ori = x2
+                    else:
+                        raise ValueError('Cannot compare the same pawn !')
+
+                    for i in range(1,diffx):
+                        x = ori + i
+                        self.cells[x,y1].status = color
+                    
+                elif(typesand == 'diag'):
+                    if(x1 < x2 and y1 < y2):
+                        orix = x1 
+                        oriy = y1
+                    elif(x1 < x2 and y1 > y2):
+                        orix = x1 
+                        oriy = y2
+                    elif(x1 > x2 and y1 < y2):
+                        orix = x2 
+                        oriy = y1
+                    elif(x1 > x2 and y1 > y2):
+                        orix = x2 
+                        oriy = y2
+                    else:
+                        raise ValueError('Cannot compare the same pawn !')
+
+                    sum = 0
+                    for i in range(1,diffx):
+                        x = orix + i
+                        y = oriy + i
+                        self.cells[x,y].status = color    
      
     def translate2XY(self,AA): #translate A1 --> x,y
         YX = list(AA)
@@ -223,24 +277,31 @@ class Board:
         elif y in self.liste_pos_Y:
             new_y = self.liste_pos_Y.index(y)
         else:
-            raise ValueError("La position indiquée n'existe pas sur le plateau")
+            return False #La position indiquée n'existe pas sur le plateau
         if x in self.liste_pos_x:
             new_x = self.liste_pos_x.index(x)
         else:
-            raise ValueError("La position indiquée n'existe pas sur le plateau")
+            return False #La position indiquée n'existe pas sur le plateau
         return (new_x,new_y)
 
     def translate2A1(self,x,y): # translate x,y --> A1  
         if y in range (0,len(self.liste_pos_Y)) :
             new_y = self.liste_pos_Y[y]
         else:
-            raise ValueError("La position indiquée n'existe pas sur le plateau")
+            return False #La position indiquée n'existe pas sur le plateau
         if x in range (0,len(self.liste_pos_x)):
             new_x = self.liste_pos_x[x]
         else:
-            raise ValueError("La position indiquée n'existe pas sur le plateau")
+            return False #La position indiquée n'existe pas sur le plateau
         return (new_y,new_x)
-    
+
+    def is_coord_ok(self,XY):
+        if len(XY) != 2 :
+            return False
+        elif self.translate2XY(XY) == False :
+            return False
+        return True
+
     def __str__(self):
         pass 
         sep = " "*18 + "+----" *8 + "+\n" 
