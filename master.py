@@ -15,11 +15,12 @@ class DungeonMaster :
         self.board.cells[3,3].status = 'white'
         self.board.cells[4,4].status = 'white'
         self.board.cells[3,4].status = 'black'
-        self.board.cells[4,3].status = 'black' #TODO : add playabe cells
-        self.board.cells[3,2].status = 'playable'
-        self.board.cells[2,3].status = 'playable'
-        self.board.cells[5,4].status = 'playable'
-        self.board.cells[4,5].status = 'playable'
+        self.board.cells[4,3].status = 'black' 
+        li_playable = self.board.coord_playable('black')
+        for coord in li_playable:
+            x = coord[0]
+            y = coord[1]
+            self.board.cells[x,y].status = 'playable'
 
 
     def ask(self):
@@ -51,16 +52,18 @@ class DungeonMaster :
             newpawn = Pawn(self.player2.color, coord[0], coord[1])
         print(newpawn)
         self.board.place(newpawn)
-
-
+        
         print(self.board)
 
-        # if sandwich:
-        #    print(change color of pawn)
-        # 
         #change player --> set status of player to active / inactive
         self.player1.chg_status()
         self.player2.chg_status()
+
+        #update playable coordinates
+        if self.player1.status == "active":
+            self.board.coord_playable(self.player1.color)
+        elif self.player2.status == "active":
+            self.board.coord_playable(self.player2.color)
 
     
     def isover(self):
