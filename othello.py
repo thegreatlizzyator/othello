@@ -1,3 +1,4 @@
+from matplotlib.transforms import BboxBase
 from master import DungeonMaster
 
 master = DungeonMaster()
