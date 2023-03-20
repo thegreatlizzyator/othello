@@ -106,12 +106,10 @@ class Board:
             sandwich = False
         else:
             if(typesand == 'line'):
-                if(y1 < y2):
-                    ori = y1 
-                elif(y1 > y2):
-                    ori = y2
-                else:
+                if(y1 == y2):
                     raise ValueError('Cannot compare the same pawn !')
+                else:
+                    ori = np.min([y1,y2])
 
                 sum = 0
                 for j in range(1,diffy):
@@ -124,12 +122,10 @@ class Board:
                 sandwich = (sum == diffy-1)
             
             elif(typesand == 'col'):
-                if(x1 < x2):
-                    ori = x1 
-                elif(x1 > x2):
-                    ori = x2
-                else:
+                if(x1 == x2):
                     raise ValueError('Cannot compare the same pawn !')
+                else:
+                    ori = np.min([x1,x2])
 
                 sum = 0
                 for i in range(1,diffx):
@@ -225,24 +221,20 @@ class Board:
                 typesand = self.type_sandwich(coord, coord_pawn)
 
                 if(typesand == 'line'):
-                    if(y1 < y2):
-                        ori = y1 
-                    elif(y1 > y2):
-                        ori = y2
-                    else:
+                    if(y1 == y2):
                         raise ValueError('Cannot compare the same pawn !')
+                    else:
+                        ori = np.min([y1,y2])
 
                     for j in range(1,diffy):
                         y = ori + j
                         self.cells[x1,y].status = color
             
                 elif(typesand == 'col'):
-                    if(x1 < x2):
-                        ori = x1 
-                    elif(x1 > x2):
-                        ori = x2
-                    else:
+                    if(x1 == x2):
                         raise ValueError('Cannot compare the same pawn !')
+                    else:
+                        ori = np.min([x1,x2])
 
                     for i in range(1,diffx):
                         x = ori + i
