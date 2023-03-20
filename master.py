@@ -15,7 +15,7 @@ class DungeonMaster :
         self.board.cells[3,3].status = 'white'
         self.board.cells[4,4].status = 'white'
         self.board.cells[3,4].status = 'black'
-        self.board.cells[4,3].status = 'black'
+        self.board.cells[4,3].status = 'black' #TODO : add playabe cells
 
         # self.who = self.player1 # needs to change after each turn
         # self.gameover = False
@@ -26,7 +26,8 @@ class DungeonMaster :
         if self.player2.status == "active":
             print("\n"+ ">"*29 + "     Player 2     " +"<"*26 + "\n")
         # it is player n 's turn 
-        print(self.board)
+
+        print(self.board) 
         
         if self.player1.status == "active":
             prompt = "your move, " + self.player1.name + ": "
@@ -36,24 +37,25 @@ class DungeonMaster :
         answer = input(prompt)
         XY = self.board.translate2XY(answer)
         print(XY)
+        #TODO: do not allow non playable moves -- add while loop if player is stupide RTFM and rage quit 
         return XY
-        #if anwser != board.cells == playable : prompt again eventuellement prompter une liste 
         
     def play(self, coord):
         print("PLAY")
+
         if self.player1.status == "active":
             newpawn = Pawn(self.player1.color, coord[0], coord[1])
         elif self.player2.status == "active":
             newpawn = Pawn(self.player2.color, coord[0], coord[1])
         print(newpawn)
-        # board.place(newpawn)
+        self.board.place(newpawn)
+        
+
+        print(self.board)
+
         # if sandwich:
         #    print(change color of pawn)
         # 
-        # where = self.board.check()
-        # # ask the player where to place new pawn 
-        # new_pawn = Pawn(color= self.who.color, posx, posy)
-        # self.board.place(pawn)
         #change player --> set status of player to active / inactive
         self.player1.chg_status()
         self.player2.chg_status()
