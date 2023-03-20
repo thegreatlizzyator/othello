@@ -32,14 +32,26 @@ class DungeonMaster :
         # it is player n 's turn 
 
         print(self.board) 
+
         
-        if self.player1.status == "active":
-            prompt = "your move, " + self.player1.name + ": "
-        if self.player2.status == "active":
-            prompt = "your move, " + self.player2.name + ": "
-        
-        answer = input(prompt)
-        XY = self.board.translate2XY(answer)
+        stupid_count = 0 
+        while stupid_count <= 10 :
+            if stupid_count == 10 :
+                print (" RTFM !!!!!!! It seems", self.player1.name, "is too stupid to play this game.")
+                self.gameover()
+            elif self.player1.status == "active":
+                prompt = "your move, " + self.player1.name + ": "
+            elif self.player2.status == "active":
+                prompt = "your move, " + self.player2.name + ": "
+            answer = input(prompt)
+            if self.board.is_coord_ok(answer) == False :
+                stupid_count += 1
+                continue
+            else :
+                XY = self.board.translate2XY(answer)
+                stupid_count = 11
+
+
         print(XY)
         #TODO: do not allow non playable moves -- add while loop if player is stupide RTFM and rage quit 
         return XY
