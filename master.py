@@ -3,6 +3,7 @@ import pyfiglet
 from board import Board
 from player import Player
 from pawn import Pawn
+import time
 
 class DungeonMaster :
     #TODO: make this class a singleton 
@@ -36,7 +37,8 @@ class DungeonMaster :
         stupid_count = 0 
         while stupid_count <= 10 :
             if stupid_count == 10 :
-                print (" RTFM !!!!!!! It seems", self.player1.name, "is too stupid to play this game.")
+                print ("\n"*2," "*5, "RTFM !!!!!!! It seems", self.player1.name, "is too stupid to play this game.","\n"*3)
+                time.sleep(5)
                 self.gameover()
                 raise ValueError (" Please read the manual first and come back when you will be less stupid ")
             elif self.player1.status == "active":
