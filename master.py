@@ -16,6 +16,10 @@ class DungeonMaster :
         self.board.cells[4,4].status = 'white'
         self.board.cells[3,4].status = 'black'
         self.board.cells[4,3].status = 'black' #TODO : add playabe cells
+        self.board.cells[3,2].status = 'playable'
+        self.board.cells[2,3].status = 'playable'
+        self.board.cells[5,4].status = 'playable'
+        self.board.cells[4,5].status = 'playable'
 
         # self.who = self.player1 # needs to change after each turn
         # self.gameover = False

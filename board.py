@@ -195,7 +195,7 @@ class Board:
         x = pawn.pawn_posx
         y = pawn.pawn_posy
         color = pawn.pawn_color
-        self.cells[y,x].status = color
+        self.cells[x,y].status = color
 
     
      
@@ -212,9 +212,9 @@ class Board:
             new_x = self.liste_pos_x.index(x)
         else:
             raise ValueError("La position indiquée n'existe pas sur le plateau")
-        return (new_y,new_x)
+        return (new_x,new_y)
 
-    def translate2A1(self,y,x): # translate x,y --> A1  
+    def translate2A1(self,x,y): # translate x,y --> A1  
         if y in range (0,len(self.liste_pos_Y)) :
             new_y = self.liste_pos_Y[y]
         else:
