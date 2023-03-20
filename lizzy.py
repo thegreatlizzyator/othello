@@ -1,24 +1,13 @@
 from alone import LonelyMaster
 
 master = LonelyMaster()
-#master.introduction_single()
+master.introduction()
+next = True
 
-coord = master.ask()
-master.play(coord)
+while next:
+    coord = master.ask()
+    master.play(coord)
+    master.playGollum()
+    next = not master.isover()
 
-master.playGollum()
-
-coord = master.ask()
-master.play(coord)
-
-
-master.playGollum()
-
-coord = master.ask()
-master.play(coord)
-
-master.playGollum()
-
-coord = master.ask()
-master.play(coord)
-
+master.gameover()
