@@ -1,13 +1,24 @@
-from master import DungeonMaster
+from alone import LonelyMaster
 
-master = DungeonMaster()
-master.introduction()
+master = LonelyMaster()
+#master.introduction_single()
 
 coord = master.ask()
 master.play(coord)
-next = not master.isover()
 
-master.gameover()
+master.playGollum()
+
+coord = master.ask()
+master.play(coord)
 
 
+master.playGollum()
+
+coord = master.ask()
+master.play(coord)
+
+master.playGollum()
+
+coord = master.ask()
+master.play(coord)
 

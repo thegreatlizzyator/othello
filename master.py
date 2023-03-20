@@ -147,3 +147,4 @@ class DungeonMaster :
             newname = input("What is your name, Player 2?")
         self.player2.name = newname
         print("Welcome " + self.player2.name + "!\n")
+
