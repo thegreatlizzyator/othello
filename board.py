@@ -195,7 +195,7 @@ class Board:
         x = pawn.pawn_posx
         y = pawn.pawn_posy
         color = pawn.pawn_color
-        self.cells[y,x].status = color
+        self.cells[x,y].status = color
 
     
      
