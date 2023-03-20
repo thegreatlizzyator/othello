@@ -59,7 +59,10 @@ class LonelyMaster :
 
     def playGollum(self):
         options = self.li_playable
-        move = random.choice(options)
+        if len(options) == 1:
+            move = options[0]
+        else:
+            move = random.choice(options)
         moveA1 = self.board.translate2A1(move[0], move[1])
         print("\nGollum plays: " + moveA1[0] + moveA1[1])
 
