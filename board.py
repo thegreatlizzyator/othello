@@ -50,7 +50,7 @@ class Board:
                 xa = a[0]
                 ya = a[1]
 
-                if((self.cells[xa,ya].is_empty()) and (a not in li_coord) and (0 <= xa <= 7) and (0 <= ya <= 7)):
+                if((self.cells[xa,ya].is_empty()) and (a not in li_coord) and (0 <= xa < 8) and (0 <= ya < 8)):
                     li_coord.append(a)
 
         return li_coord
