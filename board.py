@@ -210,7 +210,7 @@ class Board:
                     self.cells[xc,yc].status = 'empty'
 
         #TODO: change color sandwich
-
+    
         
 
     
