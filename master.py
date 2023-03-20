@@ -102,7 +102,6 @@ class DungeonMaster :
         
         nbW = allstatus.count("white")
         nbB = allstatus.count("black")
-        nbB = 1 ; nbW = 10
         if nbB > nbW :
             self.player1.status = "winner"
         elif nbB < nbW :
