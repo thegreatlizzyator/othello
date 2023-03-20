@@ -2,6 +2,7 @@
 from tkinter import Y
 import numpy as np
 from cell import Cell
+from colorama import Fore
 
 class Board:
 
@@ -311,7 +312,8 @@ class Board:
                 elif self.cells[i,j].status == "white":
                     row += "| O  "
                 else:
-                    row += "| ?  "
+                    #row += "| ?  "
+                    row += "| " + Fore.RED + "?" + Fore.BLACK + "  "
 
             rows += row + "| \n" + sep
 
