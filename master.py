@@ -16,8 +16,8 @@ class DungeonMaster :
         self.board.cells[4,4].status = 'white'
         self.board.cells[3,4].status = 'black'
         self.board.cells[4,3].status = 'black' 
-        li_playable = self.board.coord_playable('black')
-        for coord in li_playable:
+        self.li_playable = self.board.coord_playable('black')
+        for coord in self.li_playable:
             x = coord[0]
             y = coord[1]
             self.board.cells[x,y].status = 'playable'
@@ -38,6 +38,7 @@ class DungeonMaster :
             if stupid_count == 10 :
                 print (" RTFM !!!!!!! It seems", self.player1.name, "is too stupid to play this game.")
                 self.gameover()
+                raise ValueError (" Please read the manual first and come back when you will be less stupid ")
             elif self.player1.status == "active":
                 prompt = "your move, " + self.player1.name + ": "
             elif self.player2.status == "active":
@@ -49,12 +50,12 @@ class DungeonMaster :
                 continue
             else :
                 XY = self.board.translate2XY(answer)
-            if XY in self.li_playable :
-                stupid_count = 11
-                return XY
-            else :
-                print ("Caution ! These coordinates are not playable !")
-                continue
+                if XY in self.li_playable :
+                    stupid_count = 11
+                    return XY
+                else :
+                    print ("Caution ! These coordinates are not playable !")
+                    continue
 
 
         print(XY)
