@@ -312,8 +312,8 @@ class Board:
                 elif self.cells[i,j].status == "white":
                     row += "| O  "
                 else:
-                    #row += "| ?  "
-                    row += "| " + Fore.RED + "?" + Fore.BLACK + "  "
+                    row += "| ?  "
+                    #row += "| " + Fore.RED + "?" + Fore.BLACK +"  "
 
             rows += row + "| \n" + sep
 
