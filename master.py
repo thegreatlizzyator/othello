@@ -15,14 +15,13 @@ class DungeonMaster :
         self.board.cells[3,3].status = 'white'
         self.board.cells[4,4].status = 'white'
         self.board.cells[3,4].status = 'black'
-        self.board.cells[4,3].status = 'black' #TODO : add playabe cells
-        self.board.cells[3,2].status = 'playable'
-        self.board.cells[2,3].status = 'playable'
-        self.board.cells[5,4].status = 'playable'
-        self.board.cells[4,5].status = 'playable'
+        self.board.cells[4,3].status = 'black' 
+        li_playable = self.board.coord_playable('black')
+        for coord in li_playable:
+            x = coord[0]
+            y = coord[1]
+            self.board.cells[x,y].status = 'playable'
 
-        # self.who = self.player1 # needs to change after each turn
-        # self.gameover = False
 
     def ask(self):
         if self.player1.status == "active":
@@ -65,16 +64,18 @@ class DungeonMaster :
             newpawn = Pawn(self.player2.color, coord[0], coord[1])
         print(newpawn)
         self.board.place(newpawn)
-
-
+        
         print(self.board)
 
-        # if sandwich:
-        #    print(change color of pawn)
-        # 
         #change player --> set status of player to active / inactive
         self.player1.chg_status()
         self.player2.chg_status()
+
+        #update playable coordinates
+        if self.player1.status == "active":
+            self.board.coord_playable(self.player1.color)
+        elif self.player2.status == "active":
+            self.board.coord_playable(self.player2.color)
 
     
     def isover(self):
@@ -86,20 +87,38 @@ class DungeonMaster :
             ret = True
 
         return ret
-    
-    
+       
     def gameover(self):
-        # if condition de victoire -->  self.board 
-        #   self.gameover = True
+
+        isdraw = False 
+
+        allstatus = [self.board.cells[i,j].status for i in range(0,8) for j in range(0,8)]
+        
+        nbW = allstatus.count("white")
+        nbB = allstatus.count("black")
+        nbB = 1 ; nbW = 10
+        if nbB > nbW :
+            self.player1.status = "winner"
+        elif nbB < nbW :
+            self.player2.status = "winner"
+        else:
+            isdraw = True
+        print(isdraw)
         ascii_banner = "\n" + "-"*73 + "\n"
         ascii_banner += str(pyfiglet.figlet_format("     GAME OVER", font= "big"))
         ascii_banner += "-"*73 + "\n"*2
-        if self.player1.status == "winner":
-            ascii_banner += " "*20 + " *** Congratulations Player 1 ! *** \n"
-            ascii_banner += "\n" + " "*28 + "~ Player 2 you suck ~\n"
-        elif self.player2.status == "winner":
-            ascii_banner += " "*25 + "Congratulations Player 2 ! \n"
-            ascii_banner += " "*25 + "Player 1 you suck! \n"
+
+        if isdraw:
+            ascii_banner += " "*26 + "  ~~~ IT'S A TIE ~~~ \n\n"
+            ascii_banner += " "*19 + " “A tie game is like kissing your sister.”"
+            ascii_banner += "\n" + " "*32 + "[J. C. Humes] \n"
+        else:
+            if self.player1.status == "winner":
+                ascii_banner += " "*25 + "Congratulations " + self.player1.name + " ! \n"
+                ascii_banner += "\n" + " "*28 + "~ " + self.player2.name +" you suck ~\n"
+            elif self.player2.status == "winner":
+                ascii_banner += " "*25 + "Congratulations " + self.player2.name + " ! \n"
+                ascii_banner += "\n" + " "*28 + "~ " + self.player1.name +" you suck ~ \n"
         
         ascii_banner += "\n"+ " "*27 + "Thank you for playing \n "
 

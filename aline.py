@@ -16,31 +16,11 @@ master = DungeonMaster()
 board = master.board
 print(board.cells[3,3].x,board.cells[3,3].y, board.cells[3,3].status)
 
-coordB = board.coord_color('black')
-print(coordB)
-
-coordAdj = board.coord_adjacent('white')
-print(coordAdj)
-
-print(board.type_sandwich(coordB[1], coordAdj[1]))
-print(board.is_aligned4sandwich(coordB[1], coordAdj[1]))
-print(board.is_sandwich('white', coordB[1], coordAdj[1]))
-
-c = (2,5)
-print(board.type_sandwich(coordB[1], c))
-print(board.is_aligned4sandwich(coordB[1], c))
-print(board.is_sandwich('black', coordB[1], c))
-
-
-print(board.coord_playable('black'))
-
-a = [1, 2, 3]
-print(0 not in a)
-
 ####
 print("NEW")
 board.cells[4,4].status = 'black'
 board.cells[4,5].status = 'black'
+print(board.cells[3,5].status)
 
 cW = board.coord_color('white')
 print("les blancs : ", cW)
@@ -50,4 +30,4 @@ print("les adjacents : ", cAdj)
 
 cP = board.coord_playable('white')
 print("les playables : ", cP)
-
+print(board.cells[3,5].status)

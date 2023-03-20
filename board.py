@@ -187,6 +187,10 @@ class Board:
             for coord2 in same:
                 if self.is_sandwich(color, coord1, coord2):
                     playable.append(coord1)
+                    x = coord1[0]
+                    y = coord1[1]
+                    #update status cell to playable
+                    self.cells[x,y].status = 'playable'
         
         return playable
 
@@ -195,7 +199,19 @@ class Board:
         x = pawn.pawn_posx
         y = pawn.pawn_posy
         color = pawn.pawn_color
+
+        #place pawn change color cell
         self.cells[x,y].status = color
+
+        #reset playables not played to empty
+        for xc in range(0,8):
+            for yc in range(0,8):
+                if self.cells[xc,yc].is_playable():
+                    self.cells[xc,yc].status = 'empty'
+
+        #TODO: change color sandwich
+    
+        
 
     
      
