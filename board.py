@@ -143,24 +143,24 @@ class Board:
                 
             elif(typesand == 'diag'):
                 if(x1 < x2 and y1 < y2):
-                    orix = x1 
-                    oriy = y1
+                    fact_x = -1
+                    fact_y = -1
                 elif(x1 < x2 and y1 > y2):
-                    orix = x1 
-                    oriy = y2
+                    fact_x = -1
+                    fact_y = +1
                 elif(x1 > x2 and y1 < y2):
-                    orix = x2 
-                    oriy = y1
+                    fact_x = +1
+                    fact_y = -1
                 elif(x1 > x2 and y1 > y2):
-                    orix = x2 
-                    oriy = y2
+                    fact_x = +1
+                    fact_y = +1
                 else:
                     raise ValueError('Cannot compare the same pawn !')
 
                 sum = 0
                 for i in range(1,diffx):
-                    x = orix + i
-                    y = oriy + i
+                    x = x2 + fact_x*i
+                    y = y2 + fact_y*i
                     if(otherc == 'white'):
                         sum += self.cells[x,y].is_white()
                     elif(otherc == 'black'):
@@ -188,6 +188,7 @@ class Board:
         for coord1 in adjacents:
             for coord2 in same:
                 if self.is_sandwich(color, coord1, coord2):
+                    print(coord1, coord2, self.type_sandwich(coord1, coord2))
                     playable.append(coord1)
                     x = coord1[0]
                     y = coord1[1]
@@ -250,24 +251,24 @@ class Board:
                     
                 elif(typesand == 'diag'):
                     if(x1 < x2 and y1 < y2):
-                        orix = x1 
-                        oriy = y1
+                        fact_x = -1
+                        fact_y = -1
                     elif(x1 < x2 and y1 > y2):
-                        orix = x1 
-                        oriy = y2
+                        fact_x = -1
+                        fact_y = +1
                     elif(x1 > x2 and y1 < y2):
-                        orix = x2 
-                        oriy = y1
+                        fact_x = +1
+                        fact_y = -1
                     elif(x1 > x2 and y1 > y2):
-                        orix = x2 
-                        oriy = y2
+                        fact_x = +1
+                        fact_y = +1
                     else:
                         raise ValueError('Cannot compare the same pawn !')
 
                     sum = 0
                     for i in range(1,diffx):
-                        x = orix + i
-                        y = oriy + i
+                        x = x2 + fact_x*i
+                        y = y2 + fact_y*i
                         self.cells[x,y].status = color    
      
     def translate2XY(self,AA): #translate A1 --> x,y

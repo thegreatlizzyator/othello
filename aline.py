@@ -41,3 +41,7 @@ board.cells[5,4].status = 'black'
 board.cells[5,5].status = 'white'
 
 print(board)
+
+board.coord_playable('white')
+
+print(board)
