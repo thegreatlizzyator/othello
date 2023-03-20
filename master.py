@@ -26,9 +26,9 @@ class DungeonMaster :
 
     def ask(self):
         if self.player1.status == "active":
-            print("\n"+ ">"*29 + "     Player 1     " +"<"*26 + "\n")
+            print("\n"+ ">"*29 + "     BLACK     " +"<"*26 + "\n")
         if self.player2.status == "active":
-            print("\n"+ ">"*29 + "     Player 2     " +"<"*26 + "\n")
+            print("\n"+ ">"*29 + "     WHITE     " +"<"*26 + "\n")
         # it is player n 's turn 
 
         print(self.board) 
@@ -40,14 +40,14 @@ class DungeonMaster :
                 print ("\n"*2," "*5, "RTFM !!!!!!! It seems", self.player1.name, "is too stupid to play this game.","\n"*3)
                 time.sleep(5)
                 self.gameover()
-                raise ValueError (" Please read the manual first and come back when you will be less stupid ")
+                raise ValueError (" Please read the manual first and come back when you are less stupid ")
             elif self.player1.status == "active":
                 prompt = "your move, " + self.player1.name + ": "
             elif self.player2.status == "active":
                 prompt = "your move, " + self.player2.name + ": "
             answer = input(prompt)
             if self.board.is_coord_ok(answer) == False :
-                print ("Caution ! These coordinates does not exists in this board !")
+                print ("Caution ! Please enter valid coordinates !")
                 stupid_count += 1
                 continue
             else :
@@ -56,25 +56,15 @@ class DungeonMaster :
                     stupid_count = 11
                     return XY
                 else :
-                    print ("Caution ! These coordinates are not playable !")
-                    continue
-
-
-        print(XY)
-        #TODO: do not allow non playable moves -- add while loop if player is stupide RTFM and rage quit 
-        
+                    print ("Caution ! Please enter a valid move !")
+                    continue      
         
     def play(self, coord):
-        print("PLAY")
-
         if self.player1.status == "active":
             newpawn = Pawn(self.player1.color, coord[0], coord[1])
         elif self.player2.status == "active":
             newpawn = Pawn(self.player2.color, coord[0], coord[1])
-        print(newpawn)
         self.board.place(newpawn)
-        
-        #print(self.board)
 
         #change player --> set status of player to active / inactive
         self.player1.chg_status()
@@ -102,16 +92,16 @@ class DungeonMaster :
         isdraw = False 
 
         allstatus = [self.board.cells[i,j].status for i in range(0,8) for j in range(0,8)]
-        
         nbW = allstatus.count("white")
         nbB = allstatus.count("black")
+        
+
         if nbB > nbW :
             self.player1.status = "winner"
         elif nbB < nbW :
             self.player2.status = "winner"
         else:
             isdraw = True
-        print(isdraw)
         ascii_banner = "\n" + "-"*73 + "\n"
         ascii_banner += str(pyfiglet.figlet_format("     GAME OVER", font= "big"))
         ascii_banner += "-"*73 + "\n"*2
@@ -121,8 +111,11 @@ class DungeonMaster :
             ascii_banner += " "*19 + " “A tie game is like kissing your sister.”"
             ascii_banner += "\n" + " "*32 + "[J. C. Humes] \n"
         else:
+            ascii_banner += " "*32 + "Final Score: \n"
+            ascii_banner += " "*26 + self.player1.name + ": " + str(nbB) + "    |    " + self.player2.name + ": " + str(nbW) +  "\n \n"
+            
             if self.player1.status == "winner":
-                ascii_banner += " "*25 + "Congratulations " + self.player1.name + " ! \n"
+                ascii_banner += " "*28 + "Congratulations " + self.player1.name + " ! \n"
                 ascii_banner += "\n" + " "*28 + "~ " + self.player2.name +" you suck ~\n"
             elif self.player2.status == "winner":
                 ascii_banner += " "*25 + "Congratulations " + self.player2.name + " ! \n"
