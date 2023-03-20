@@ -32,6 +32,11 @@ class DungeonMaster :
             print("\n"+ ">"*29 + "     WHITE     " +"<"*26 + "\n")
         # it is player n 's turn 
 
+        allstatus = [self.board.cells[i,j].status for i in range(0,8) for j in range(0,8)]
+        nbW = allstatus.count("white")
+        nbB = allstatus.count("black")
+        print(" "*24 + self.player1.name + ": " + str(nbB) + "    |    " + self.player2.name + ": " + str(nbW) +  "\n \n")
+            
         print(self.board) 
 
         
@@ -169,6 +174,13 @@ class LonelyMaster :
 
     def ask(self):
         print("\n"+ ">"*29 + "     BLACK     " +"<"*26 + "\n")
+        
+        allstatus = [self.board.cells[i,j].status for i in range(0,8) for j in range(0,8)]
+        nbW = allstatus.count("white")
+        nbB = allstatus.count("black")
+        print(" "*24 + self.player1.name + ": " + str(nbB) + "    |    " + self.player2.name + ": " + str(nbW) +  "\n \n")
+        
+        
         print(self.board) 
 
         
