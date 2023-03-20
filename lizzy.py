@@ -12,11 +12,6 @@ cell2 = Cell(0,1,'black')
 master = DungeonMaster()
 board = master.board
 #print(board.cells[3,3].x,board.cells[3,3].y, board.cells[3,3].status)
-
-
-
-board.cells[1,1].status = "playable"
-
 print(board)
 
 print(master.isover())

@@ -277,24 +277,31 @@ class Board:
         elif y in self.liste_pos_Y:
             new_y = self.liste_pos_Y.index(y)
         else:
-            raise ValueError("La position indiquée n'existe pas sur le plateau")
+            return False #La position indiquée n'existe pas sur le plateau
         if x in self.liste_pos_x:
             new_x = self.liste_pos_x.index(x)
         else:
-            raise ValueError("La position indiquée n'existe pas sur le plateau")
+            return False #La position indiquée n'existe pas sur le plateau
         return (new_x,new_y)
 
     def translate2A1(self,x,y): # translate x,y --> A1  
         if y in range (0,len(self.liste_pos_Y)) :
             new_y = self.liste_pos_Y[y]
         else:
-            raise ValueError("La position indiquée n'existe pas sur le plateau")
+            return False #La position indiquée n'existe pas sur le plateau
         if x in range (0,len(self.liste_pos_x)):
             new_x = self.liste_pos_x[x]
         else:
-            raise ValueError("La position indiquée n'existe pas sur le plateau")
+            return False #La position indiquée n'existe pas sur le plateau
         return (new_y,new_x)
-    
+
+    def is_coord_ok(self,XY):
+        if len(XY) != 2 :
+            return False
+        elif self.translate2XY(XY) == False :
+            return False
+        return True
+
     def __str__(self):
         pass 
         sep = " "*18 + "+----" *8 + "+\n" 
